@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Trabalho13</title>
+    <style>
+
+@keyframes rainbow {
+      0% { color: red; }
+      14% { color: orange; }
+      28% { color: pink; }
+      42% { color: green; }
+      57% { color: blue; }
+      71% { color: indigo; }
+      85% { color: violet; }
+      100% { color: red; }
+    }
+
+    .rainbow-text {
+      font-weight: bold;
+      animation: rainbow 3s linear infinite;
+    }
+
+        h1 {
+            font-size: 40px;
+            font-family: Arial;
+            color: lightpink;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 90%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            font-family: Arial;
+        }
+
+        th {
+            padding: 12px;
+            background-color: #f4f4f4;
+            font-size: 16px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        .input#1, .input#2 {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            width: 220px; 
+
+        }
+
+        .check-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: lightpink;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            font-family: Arial
+        }
+
+        .check-button:disabled {
+            background-color: #d3d3d3;
+            cursor: not-allowed;
+        }
+
+
+    </style>
+</head>
+
+<body>
+
+<h1 class="center-text">Quão Velho Realmente É?</h1>
+
+<table>
+    <tr>
+        <th>Idade (Em Anos):</th>
+        <th>[0;2]</th>
+        <th>]2;12[</th>
+        <th>[12;16]</th>
+        <th>]16;18[</th>
+        <th>[18;50[</th>
+        <th>[50;65]</th>
+        <th>[65;100]</th>
+        <th>[100;130]</th>
+        <th>[>130]</th>
+    </tr>
+    <tr>
+        <th>Faixa Etária</th>
+        <td>Bebé</td>
+        <td>Criança</td>
+        <td>Adolescente</td>
+        <td>Jovem adulto</td>
+        <td>Adulto</td>
+        <td>Adulto de Meia Idade</td>
+        <td>Idoso</td>
+        <td>Lendário</td>
+        <td class="rainbow-text">Imortal</td>
+    </tr>
+</table>
+<center>
+<button class="check-button" id="check-button" name="check-button" disabled="disabled" onclick="checkidade()" >Analisar</button>
+
+<input class="input#1" type="number" min="0" id="idade" placeholder="Idade" required>
+
+<p>A Sua Faixa Etária é: <input class="input#2" type="text" placeholder="Faixa Etária" id="faixa-idade" readonly>.</p></center>
+
+<center><p> <img id="background"> </p></center>
+
+<script>
+function updateButtonState() {
+    var x = document.getElementById("idade").value;
+    x = Number(x);
+    
+    if (x >= 0) {
+        document.getElementById("check-button").disabled = false;
+    } else {
+        document.getElementById("check-button").disabled = true;
+    }
+}
+
+document.getElementById("idade").addEventListener("input", updateButtonState);
+
+function checkidade() {
+    var x = document.getElementById("idade").value;
+    x = Number(x);
+
+    var imagemElement = document.getElementById("background");
+
+    if (x >= 0 && x <= 2) {
+        document.getElementById("faixa-idade").value = "Bebé";  imagemElement.src = "imagens/foto-bebé.png";
+    } else if (x > 2 && x < 12) {
+        document.getElementById("faixa-idade").value = "Criança"; imagemElement.src = "imagens/foto-criança.png";
+    } else if (x >= 12 && x <= 16) {
+        document.getElementById("faixa-idade").value = "Adolescente"; imagemElement.src = "imagens/foto-adolescente.png";
+    } else if (x > 16 && x < 18) {
+        document.getElementById("faixa-idade").value = "Jovem Adulto"; imagemElement.src = "imagens/foto-jovem-adulto.png";
+    } else if (x >= 18 && x < 50) {
+        document.getElementById("faixa-idade").value = "Adulto"; imagemElement.src = "imagens/foto-adulto.png";
+    } else if (x >= 50 && x <= 65) {
+        document.getElementById("faixa-idade").value = "Adulto de Meia Idade"; imagemElement.src = "imagens/foto-adulto-de-meia-idade.png";
+    } else if (x > 65 && x < 100) {
+        document.getElementById("faixa-idade").value = "Idoso"; imagemElement.src = "imagens/foto-idoso.png";
+    } else if (x >= 100 && x < 130) {
+        document.getElementById("faixa-idade").value = "Lendário"; imagemElement.src = "imagens/foto-lendário.png";
+    } else if (x >= 130) {
+        document.getElementById("faixa-idade").value = "Imortal"; imagemElement.src = "imagens/foto-imortal.webp"
+    }
+}
+</script>
+
+</body>
+</html>
